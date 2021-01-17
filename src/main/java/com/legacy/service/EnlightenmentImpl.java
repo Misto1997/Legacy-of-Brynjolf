@@ -19,10 +19,14 @@ import static com.legacy.constant.Status.*;
 public class EnlightenmentImpl implements Escape {
     private static final Logger logger = LoggerFactory.getLogger(EnlightenmentImpl.class);
     private static final String[][] all4Direction = {{"-1", "1", "0", "0"}, {"0", "0", "-1", "1"}, {"U", "D", "L", "R"}};
+    Helper helper;
+
+    public EnlightenmentImpl(Helper helper) {
+        this.helper = helper;
+    }
 
     @Override
     public void findEscapePath(String[][] room, String inputSequence) throws IOException {
-        Helper helper = new Helper();
         BrynjolfStatus brynjolfStatus = null;
         if (helper.isInputSequencePresentAndValid(inputSequence)) {
             brynjolfStatus = helper.getResultFollowedByInputSequence(room, inputSequence);
@@ -41,21 +45,20 @@ public class EnlightenmentImpl implements Escape {
     }
 
     //Brynjolf mind game
-    public BrynjolfStatus moveAccordingToBrynjolfMind(String[][] room, Helper helper) {
+    private BrynjolfStatus moveAccordingToBrynjolfMind(String[][] room, Helper helper) {
         AllPositionWrapper allPositionWrapper = new AllPositionWrapper(helper.getAllGuardsPosition(room),
                 helper.getBrynjolfPosition(room), helper.getExitGatePosition(room));
         Queue<SequenceQueue> queue = new LinkedList<>();
         queue.add(new SequenceQueue(allPositionWrapper.getBrynjolfPosition(), "", allPositionWrapper.getAllGuardsPosition()));
-        int moves = 0;
+        long moves = 0;
 
         while (!queue.isEmpty()) {
             SequenceQueue currentRoomState = queue.poll();
             moves++;
-
             if (currentRoomState.getBrynjolfPosition().getXAxis() == allPositionWrapper.getExitGatePosition().getXAxis() &&
                     currentRoomState.getBrynjolfPosition().getYAxis() == allPositionWrapper.getExitGatePosition().getYAxis()) {
                 return new BrynjolfStatus(WIN, currentRoomState.getWinningSequence());
-            } else if (moves == 500)
+            } else if (moves == 1000000)
                 break;
             for (int i = 0; i < 4; i++) {
                 Position brynjolfNextPosition = new Position(currentRoomState.getBrynjolfPosition().getXAxis() + Integer.parseInt(all4Direction[0][i]),

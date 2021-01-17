@@ -12,7 +12,13 @@ import static com.legacy.constant.Status.WIN;
 
 //implementation for Establishment Escape
 public class EstablishmentImpl implements Escape {
+
     private static final Logger logger = LoggerFactory.getLogger(EstablishmentImpl.class);
+    Helper helper;
+
+    public EstablishmentImpl(Helper helper) {
+        this.helper = helper;
+    }
 
     @Override
     public void findEscapePath(String[][] room, String inputSequence) throws IOException {

@@ -1,4 +1,4 @@
 O O O X
 G O O E
 O B O O
-X O G O
+X O G A
