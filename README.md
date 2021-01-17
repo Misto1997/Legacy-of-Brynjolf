@@ -32,7 +32,7 @@ Brynjolf is a legendary thief known to escape even the most secured rooms and th
 3. U(capital U) - move up
 4. D(capital D) - move down
 
-**All legends are stirctly capital letter only**
+**All legends should be stirctly capital letter only**
 
 
 ## Rules
@@ -45,7 +45,7 @@ Brynjolf is a legendary thief known to escape even the most secured rooms and th
 
 
 ## Input format
-1. room.txt file inside src -> main -> resource will contain above mentioned room blue print in N x N format.
+1. room.txt file inside src -> main -> resource will contain above mentioned room blueprint in N x N format.
 2. this file should contain square(N x N) format only with given restriction where N is a positive integer.
 3. you can edit file to try different room structure's.
 4. two options would be given to you: 1. Establishment 2. Enlightement
@@ -54,8 +54,8 @@ Brynjolf is a legendary thief known to escape even the most secured rooms and th
 ## Walkthrough
 
 #### 1. Establishment
--input sequence(example: LLR) needed to be passed(compulsory) via commandline input.
--it will print the state i.e (**WIN, LOOSE, UNDECIDED**) after executing given sequence.
+- input sequence(example: LLR) needed to be passed(compulsory) via commandline input.
+- it will print the state i.e (**WIN, LOOSE, UNDECIDED**) after executing given sequence.
 
 ##### Example
 ```
@@ -82,9 +82,9 @@ outpur: undecided: executed 2 moves of 2
 ```
   
 #### 2. Enlightement
--input sequence(example: LLR) needed to be passed(Optional) via commandline input.
--if input sequence is there it will run the sequence and if state is **UNDECIDED** after running input sequence then it will  run winning sequence.
--if input sequence is not there then it will simply print **winning** sequence.
+- input sequence(example: LLR) needed to be passed(Optional) via commandline input.
+- if input sequence is there it will run the sequence and if state is **UNDECIDED** after running input sequence then it will  run winning sequence.
+- if input sequence is not there then it will simply print **winning** sequence.
 
 
 ##### Example
@@ -113,11 +113,11 @@ output: stuck: no way to win
 
 ## Assumptions
 1. If Brynjolf step's into position where guard stands then game over there and thats the final room blueprint.
-2. guard copies brynjolf moves after brynjolf moves, both wont move parallel.
+2. guard copies brynjolf moves after brynjolf moves, both will not move in parallel.
 
 
 ## Limitation
-As BFS shortest path algorithm is being used here so it will try to explore all path from pertcular point to get shortest distance and hence it work's great with small matrix size, till 7x7 size to be precise. Performace started decrease if matrix size became larger than this.
+As BFS shortest path algorithm is being used here so it will try to explore all path from pertcular point to get shortest distance and hence it work's great with small matrix size, till 7x7 size to be precise. Performace will keeps on decreasing if matrix size increases.
 
 ## In progress work
 1. optimize algorithm to get faster result and incorporate larger matrix size.
