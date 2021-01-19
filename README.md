@@ -118,7 +118,9 @@ output: stuck: no way to win
 
 ## Limitation
 ~~As BFS shortest path algorithm is being used here so it will try to explore all path from pertcular point to get shortest distance and hence it work's great with small matrix size, till 7x7 size to be precise. Performace will keeps on decreasing if matrix size increases.~~
-**Algorithm is now optimized and working perfect(tested till 15x15 size)**
+```
+Algorithm is now optimized and working perfect(tested till 15x15 size)
+```
 
 ## In progress work
 1. Make dependencies loosely coupled.
