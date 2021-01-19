@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -49,6 +50,9 @@ public class EnlightenmentImpl implements Escape {
         AllPositionWrapper allPositionWrapper = new AllPositionWrapper(helper.getAllGuardsPosition(room),
                 helper.getBrynjolfPosition(room), helper.getExitGatePosition(room));
         Queue<SequenceQueue> queue = new LinkedList<>();
+        int[][] visited = new int[room.length][room[0].length];
+        for (int[] rows : visited)
+            Arrays.fill(rows, 4);
         queue.add(new SequenceQueue(allPositionWrapper.getBrynjolfPosition(), "", allPositionWrapper.getAllGuardsPosition()));
         long moves = 0;
 
@@ -66,7 +70,10 @@ public class EnlightenmentImpl implements Escape {
 
                 if (!helper.isWallPresentCaseBrynjolf(room, brynjolfNextPosition) && !helper.isGuardPresent(currentRoomState.getAllGuardsPositionInstance(), brynjolfNextPosition)) {
                     List<Position> allGuardsNextPosition = helper.getAllGuardNextPosition(room, currentRoomState.getAllGuardsPositionInstance(), Integer.parseInt(all4Direction[0][i]), Integer.parseInt(all4Direction[1][i]));
-                    queue.add(new SequenceQueue(brynjolfNextPosition, currentRoomState.getWinningSequence() + all4Direction[2][i], allGuardsNextPosition));
+                    if (visited[brynjolfNextPosition.getXAxis()][brynjolfNextPosition.getYAxis()] > 0) {
+                        queue.add(new SequenceQueue(brynjolfNextPosition, currentRoomState.getWinningSequence() + all4Direction[2][i], allGuardsNextPosition));
+                        visited[brynjolfNextPosition.getXAxis()][brynjolfNextPosition.getYAxis()] -= 1;
+                    }
                 }
             }
         }
